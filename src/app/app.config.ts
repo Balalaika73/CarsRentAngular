@@ -3,7 +3,6 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection(),
     
   ]
 };
