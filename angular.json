@@ -40,6 +40,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "baseHref": "/CarsRentAngular/",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
