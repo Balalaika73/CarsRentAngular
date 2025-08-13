@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-    standalone: true,
+  standalone: true,
   selector: 'app-cars',
   imports: [ReactiveFormsModule],
   templateUrl: './cars.html',
@@ -12,6 +12,8 @@ import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 export class Cars {
   http = inject(HttpClient);
   cars: any = [];
+
+  mainImgStyle: { right?: string } = {};
 
   carsFilter = [
     {
@@ -57,6 +59,12 @@ export class Cars {
     name: new FormControl(''),
     phone: new FormControl(''),
   });
+
+  @HostListener("document:scroll", ["$event"])
+  onScroll(event: Event) {
+    const offsetRight = -576 + window.scrollY * 0.2;
+    this.mainImgStyle = { right: offsetRight + "px" };
+  }
 
   ngOnInit() {
     this.getCars("")
