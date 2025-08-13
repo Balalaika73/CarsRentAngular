@@ -14,6 +14,7 @@ export class Cars {
   cars: any = [];
 
   mainImgStyle: { right?: string } = {};
+  orderImgStyle: { transform?: string } = {};
 
   carsFilter = [
     {
@@ -64,6 +65,13 @@ export class Cars {
   onScroll(event: Event) {
     const offsetRight = -576 + window.scrollY * 0.2;
     this.mainImgStyle = { right: offsetRight + "px" };
+  }
+
+  @HostListener("document:mousemove", ["$event"])
+  onMouseMove(e: MouseEvent) {
+    this.orderImgStyle = {
+      transform: "translate3d(" + (e.clientX * 0.3) / 8 + "px," + (e.clientY * 0.3) / 8 + "px,0px)"
+    };
   }
 
   ngOnInit() {
